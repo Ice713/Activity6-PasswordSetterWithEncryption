@@ -8,21 +8,21 @@ namespace Activity6_PasswordSetterWithEncryption
 {
     internal class UserAccount
     {
-        private string encryptedPassword;
+        private string hashedPassword;
         private readonly string encryptionKey = "MySeckretKey"; 
 
         public string Password
         {
             set
             {
-                encryptedPassword = EncryptPassword(value);
+                hashedPassword = HashPassword(value);
             }
         }
 
-        private string EncryptPassword(string password)
+        private string HashPassword(string password)
         {
-            var encryptedChars = password.Select((c, i) => (char)(c ^ encryptionKey[i % encryptionKey.Length])).ToArray();
-            return new string(encryptedChars);
+            // Simple hash simulation (not secure, just for demonstration)
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(password + encryptionKey));           
         }
     }
 }
