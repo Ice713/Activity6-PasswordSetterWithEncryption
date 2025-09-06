@@ -16,5 +16,27 @@ namespace Activity6_PasswordSetterWithEncryption
         {
             InitializeComponent();
         }
+
+        private void buttonEncryptStore_Click(object sender, EventArgs e)
+        {
+            try
+                {
+                if (string.IsNullOrWhiteSpace(textBoxPassword.Text))
+                {
+                    MessageBox.Show("Please enter a valid password.");
+                    return;
+                }
+                UserAccount userAccount = new UserAccount();
+
+                userAccount.Password = textBoxPassword.Text;
+
+                MessageBox.Show("Password stored successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+            
+        }
     }
 }
